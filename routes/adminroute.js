@@ -14,7 +14,7 @@ const setNoCacheHeader = (req, res, next) => {
 
 // admin_route.use(bodyParser.urlencoded({extended:true}));
 
-admin_route.set('Views','./Views/admin')
+admin_route.set('views','./views/admin')
 const adminController=require('../controllers/admincontroller');
 const usermanageController=require('../controllers/usermanagecontroller')
 const categorymanageController=require('../controllers/categorymanagecontroller')

@@ -43,7 +43,7 @@ app.use('/', require('./routes/login'));
 app.use('/admin', adminRoute);
 app.use(nocache())
 
-const errorRoutes = require('./routes/errorRoutes');
+const errorRoutes = require('./routes/errorroutes');
 app.use(errorRoutes);
 
 const PORT = process.env.PORT || 3000;
