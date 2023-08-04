@@ -26,6 +26,11 @@ const auth = require("../middlewares/userauth");
 const userController = require("../controllers/usercontroller");
 const couponController = require("../controllers/couponcontroller");
 
+
+
+
+router.get("/", userController.loginView); // Add this route for the root path
+
 router.get("/register",auth.logout, registerView);
 router.get("/login",nocache(),userController.loginView);
 router.get("/otp", auth.verifyUser,otpView);
