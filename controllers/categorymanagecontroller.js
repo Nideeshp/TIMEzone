@@ -11,7 +11,7 @@ const Category = require("../models/category");
 const loadcategoryManage = async (req, res) => {
   try {
     const categories = await Category.find();
-    res.render("admin/categorymanage", { categories, message: "" });
+    res.render("categorymanage", { categories, message: "" });
   } catch (error) {
     res.status(500).send('Internal Server Error');
   }
@@ -45,7 +45,7 @@ const loadaddCategory = async (req, res, next) => {
     if (existingCategory) {
       const categories = await Category.find();
       const message = "Category already exists";
-      return res.render("admin/categorymanage", { categories, message });
+      return res.render("categorymanage", { categories, message });
     }
 
     // Create a new category
@@ -55,11 +55,11 @@ const loadaddCategory = async (req, res, next) => {
     if (savedCategory) {
       const categories = await Category.find();
       const message = "Category added";
-      return res.render("admin/categorymanage", { categories, message });
+      return res.render("categorymanage", { categories, message });
     } else {
       const categories = await Category.find();
       const message = "Action failed";
-      return res.render("admin/categorymanage", { categories, message });
+      return res.render("categorymanage", { categories, message });
     }
   } catch (error) {
     next(error);
@@ -77,7 +77,7 @@ const loadeditCategory = async (req, res, next) => {
     const id = req.params.id;
     const details = await Category.findOne({ _id: id });
     const main = details.id;
-    res.render("admin/editcategory", { details: details, main: main });
+    res.render("editcategory", { details: details, main: main });
   } catch (error) {
     next(error);
   }
@@ -105,7 +105,7 @@ const editedCategory = async (req, res, next) => {
     if (updatedCategory) {
       res.redirect("/admin/categorymanage");
     } else {
-      res.render("admin/editcategory", {
+      res.render("editcategory", {
         message: "Failed to update category",
       });
     }
