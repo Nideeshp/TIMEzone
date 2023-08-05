@@ -28,7 +28,7 @@ const nocache = require('nocache');
 
 
 
-admin_route.get('/adminLogin',auth.isLogout,setNoCacheHeader,adminController.loadLogin);
+admin_route.get('/adminlogin',auth.isLogout,setNoCacheHeader,adminController.loadLogin);
 admin_route.post('/login',adminController.verifyLogin);
 admin_route.post('/create', adminController.createAdmin);
 admin_route.get('/logout', auth.isLogin,adminController.logout);
