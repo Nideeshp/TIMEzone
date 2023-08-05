@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const adminRoute = require('./routes/adminroute');
 const nocache = require('nocache')
+const path= require('path')
 
 const app = express();
 
@@ -18,7 +19,11 @@ mongoose
   .catch(err => console.log(err));
 
 // view engine
-app.set('view engine', 'ejs');
+app.set('view engine','ejs')
+app.set('views', path.join(__dirname, 'views'));
+
+
+
 
 app.use(session({
   secret: 'key',
