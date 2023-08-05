@@ -12,9 +12,9 @@ const User= require('../models/user')
 const loadLogin = async (req, res) => {
   try {
     if (req.session.admin) {
-      res.redirect("/admin/adminHome");
+      res.redirect("/admin/adminhome");
     }
-    res.render("admin/adminlogin");
+    res.render("adminlogin"); 
   } catch (error) {
     console.log(error.message);
   }
@@ -46,7 +46,7 @@ const verifyLogin = async (req, res) => {
     const adminPass = process.env.ADMIN_PASSWORD;
 
     if (email !== adminEmail && password !== adminPass) {
-      res.render("admin/adminlogin", {
+      res.render("adminlogin", {
         message: "Email and password is incorrect",
       });
     } else {
@@ -156,7 +156,7 @@ const cancelled= await Order.find({status:"cancelled"}).count()
 const UPI = await Order.find({paymentMethod:"ONLINE",status:"delivered"}).count()
 const COD= await Order.find({paymentMethod:"COD",status:"delivered"}).count()
 
-    res.render("admin/adminhome", {
+    res.render("adminhome", {
        orders, users,
        categoryData:categoryData,
        productData:productData,salesCount,weeklyRevenue,
@@ -264,7 +264,7 @@ const salesReport = async (req,res,next)=>{
     newDate.setDate(existingDate.getDate()+1)
 
     if(req.body.form =="" || req.body.to ==""){
-      res.render('admin/sales',{message:"all fields are required"})
+      res.render('sales',{message:"all fields are required"})
     }else{
       const ss= await Order.find({
         status:"delivered",date:{
@@ -272,7 +272,7 @@ const salesReport = async (req,res,next)=>{
           $lte:new Date(newDate)
         }
       }).populate("productDt.items.productId")
-      res.render("admin/salesreport",{ss})
+      res.render("salesreport",{ss})
     }
   } catch (error) {
     next(error)
@@ -282,7 +282,7 @@ const salesReport = async (req,res,next)=>{
 
 const salesReports= async(req,res,next)=>{
   try {
-    res.render('admin/sales')
+    res.render('sales')
   } catch (error) {
     next(error)
   }

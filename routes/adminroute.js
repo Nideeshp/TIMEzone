@@ -32,6 +32,7 @@ admin_route.get('/adminlogin',auth.isLogout,setNoCacheHeader,adminController.loa
 admin_route.post('/login',adminController.verifyLogin);
 admin_route.post('/create', adminController.createAdmin);
 admin_route.get('/logout', auth.isLogin,adminController.logout);
+
 //admin
 admin_route.get('/adminHome',auth.isLogin,nocache(),adminController.loadDashboard)
 admin_route.get('/userManage',auth.isLogin,usermanageController.loadUserMange)
